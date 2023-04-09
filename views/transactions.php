@@ -53,19 +53,19 @@
             <tr>
                 <th colspan="3">Total Income:</th>
                 <td>
-                    <!-- YOUR CODE -->
+                    <?= $totals['totalIncome'] ?? 0 ?>
                 </td>
             </tr>
             <tr>
                 <th colspan="3">Total Expense:</th>
                 <td>
-                    <!-- YOUR CODE -->
+                    <?= $totals['totalExpense'] ?? 0 ?>
                 </td>
             </tr>
             <tr>
                 <th colspan="3">Net Total:</th>
                 <td>
-                    <!-- YOUR CODE -->
+                    <?= $totals['netTotal'] ?? 0 ?>
                 </td>
             </tr>
         </tfoot>
