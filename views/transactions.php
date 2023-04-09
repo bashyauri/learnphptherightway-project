@@ -41,10 +41,19 @@
             <?php if (!empty($transactions)) :?>
             <?php foreach ($transactions as $transaction):?>
             <tr>
-                <td><?= $transaction['date'] ?></td>
+                <td><?= formatDate($transaction['date']) ?></td>
                 <td><?= $transaction['checkNumber'] ?></td>
                 <td><?= $transaction['description'] ?></td>
-                <td><?= $transaction['amount'] ?></td>
+                <td>
+                    <?php if ($transaction['amount'] < 0) :?>
+                    <span style="color:red"> <?= formatDollarAmount($transaction['amount']) ?></span>
+
+                    <?php elseif ($transaction['amount'] > 0):?>
+                    <span style="color:green"> <?= formatDollarAmount($transaction['amount']) ?></span>
+                </td>
+                <?php else:?>
+                <?= formatDollarAmount($transaction['amount']) ?>
+                <?php endif;?>
             </tr>
             <?php endforeach  ?>
             <?php endif?>
@@ -53,19 +62,19 @@
             <tr>
                 <th colspan="3">Total Income:</th>
                 <td>
-                    <?= $totals['totalIncome'] ?? 0 ?>
+                    <?= formatDollarAmount($totals['totalIncome']) ?? 0 ?>
                 </td>
             </tr>
             <tr>
                 <th colspan="3">Total Expense:</th>
                 <td>
-                    <?= $totals['totalExpense'] ?? 0 ?>
+                    <?= formatDollarAmount($totals['totalExpense']) ?? 0 ?>
                 </td>
             </tr>
             <tr>
                 <th colspan="3">Net Total:</th>
                 <td>
-                    <?= $totals['netTotal'] ?? 0 ?>
+                    <?=formatDollarAmount($totals['netTotal']) ?? 0 ?>
                 </td>
             </tr>
         </tfoot>
